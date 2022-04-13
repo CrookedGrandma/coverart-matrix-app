@@ -226,6 +226,7 @@ class _HomeState extends State<Home> {
                     // TODO: LOGIN FAILED
                     print("Login failed :(");
                   }
+                  redirurl = null;
                 });
                 sendMessage(socket, "REDIR:$redirurl");
               });
@@ -276,8 +277,11 @@ class _HomeState extends State<Home> {
           ),
         ),
         ElevatedButton(
-          onPressed: () {
-            // TODO: LOGOUT BUTTON
+          onPressed: () async {
+            print(await setStatus("req_login", "-1"));
+            setState(() {
+              loginname = null;
+            });
           },
           child: const Text("Logout"),
         )
